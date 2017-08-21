@@ -32,6 +32,12 @@ Blob::Blob(sf::Vector2f pos, int width, int height) : MobileObj(pos) {
 
 /// /////////////////////////////////////////////////
 
+int Blob::GetRadius() {
+  return radius;
+}
+
+/// /////////////////////////////////////////////////
+
 void Blob::SetBndrs(int width, int height) {
   bounceW = width;
   bounceH = height;

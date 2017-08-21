@@ -13,6 +13,7 @@ private:
 public:
   Blob(float x, float y, int width, int height);
   Blob(sf::Vector2f pos, int width, int height);
+  int GetRadius();
   void SetBndrs(int width, int height);
   void ShowCircle(sf::RenderWindow& w);
   void Update();

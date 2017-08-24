@@ -18,7 +18,7 @@ int getDistance(int i, int j, int x, int y) {
 float inverseRelation(float dis, float rad) {
   if(dis == 0) dis = 0.1;   //Evita division entre cero
 
-  return (100 * rad / dis); //Relacion inversa con la distancia y multiplicada por escalar
+  return (80 * rad / dis); //Relacion inversa con la distancia y multiplicada por escalar
 }
 
 float calculaCos(float pos, float longitud, float fase, float amplitud_inf, float aplitud_sup) {

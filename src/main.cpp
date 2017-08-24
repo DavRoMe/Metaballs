@@ -21,8 +21,9 @@ int main() {
   arrPixel = new sf::Uint8[WIDTH * HEIGHT * 4];
   std::list <Blob*> blb;
   std::list <Blob*>::iterator iBlob;
-  uint8_t ciclo;
-  float fase;
+  uint8_t ciclo = 0;
+  float fase = 0;
+  uint8_t mode = 1;
 
   if(!textura.create(WIDTH, HEIGHT)) return -1;
   sf::Sprite sprt(textura);
@@ -30,7 +31,7 @@ int main() {
 
   uint8_t totalBlob = 0;
   for(int i = 0; i < BLOBS; i++) {
-        sf::Vector2f pos((float)IntRandom(10, WIDTH - 10), (float)IntRandom(10, HEIGHT - 10));
+    sf::Vector2f pos((float)IntRandom(10, WIDTH - 10), (float)IntRandom(10, HEIGHT - 10));
     blb.push_back(new Blob(pos, WIDTH, HEIGHT));
     totalBlob++;
   }
@@ -41,13 +42,34 @@ int main() {
       if(evnt.type == sf::Event::Closed) {
         wndw.close();
       }
+      if(sf::Event::KeyPressed) {
+        switch(evnt.key.code) {
+        case sf::Keyboard::Num1:
+          mode = 1;
+          break;
+        case sf::Keyboard::Num2:
+          mode = 2;
+          break;
+        default:
+          break;
+        }
+      }
     }
 
-    SenoidalPxl(arrPixel, WIDTH, HEIGHT, blb, fase);
-    ciclo++;
-    if(ciclo == 3) {
-      fase += 0.1;
-      ciclo = 0;
+    switch(mode) {
+    case 1:
+      SenoidalPxl(arrPixel, WIDTH, HEIGHT, blb, fase);
+      ciclo++;
+      if(ciclo == 3) {
+        fase += 0.1;
+        ciclo = 0;
+      }
+      break;
+    case 2:
+      Grayscale(arrPixel, WIDTH, HEIGHT, blb);
+      break;
+    default:
+      break;
     }
 
     textura.update(arrPixel);
